@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="https://unpkg.com/cardsJS/dist/cards.min.css" />
+        <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.css" />
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div id="startGame">
+                        <label class="form-label" for="playersInput">How many players?</label>
+                        <form class="form-inline">
+                            <input class="form-control form-control-inline" id="playersInput">
+                            <button class="btn btn-small btn-primary" id='numPlayersButton' type='button' onclick="startGame();">Start!</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div id="identityReveal" style="display: none;">
+                        <p id="identityHeader"></p>
+                        <div id="identityDeal">
+                
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div id="missionReveal" style="display: none;">
+                        <p>The missions are: </p>
+                        <p id="missionDeal"></p>
+                    </div> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div id="userDiv">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div id="deal">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div>
+                        <button class="btn btn-info" id="missionStart1" style="display: none;">Start Mission 1</button>
+                        <button class="btn btn-danger d-none" id="missionStart1" style="display: none;">Start Mission 2</button>
+                        <button class="btn btn-danger d-none" id="missionStart1" style="display: none;">Start Mission 3</button>
+                        <button class="btn btn-danger d-none" id="missionStart1" style="display: none;">Start Mission 4</button>
+                        <button class="btn btn-danger d-none" id="missionStart1" style="display: none;">Start Mission 5</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div id="reload" style="display: none;">
+                        <button class="btn btn-outline-dark" type='button' onClick="window.location.reload();">Reload</button>
+                    </div>
+                </div>
+            </div>
+            <div id="proposeModal" class="modal fade"  role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="proposeModalHeader"></h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="userButts" class="d-flex flex-wrap justify-content-center">
+                                
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" id="missionPropose" class="btn btn-lg btn-dark mx-auto">Propose Mission</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="voteModal" class="modal fade" data-keyboard="false" data-backdrop="static" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="voteModalHeader">Do you approve this mission?</h4>
+                            <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                        </div>
+                        <div class="modal-body">
+                            <div id="proposedPlayers" class="d-flex flex-wrap justify-content-center">
+                                
+                            </div>
+                            <div id="voteButts" class="d-flex flex-wrap justify-content-around mt-3">
+                                <div>
+                                    <input type="radio" class="hideInput" id="yes" name="voteMission" value="yes">
+                                    <label for="yes" id="thumbsUp" class="btn btn-outline-success"><i class="far fa-3x fa-thumbs-up"></i></label>
+                                </div>
+                                <div>
+                                    <input type="radio" class="hideInput" id="no" name="voteMission" value="no">
+                                    <label for="no" id="thumbsDown" class="btn btn-outline-danger"><i class="far fa-3x fa-thumbs-down fa-flip-horizontal"></i></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer mt-0">
+                            <button id="voteSubmit" class="btn btn-lg btn-dark mx-auto">Submit Vote</button>
+                        </div>
+                            <p id="voteWarning" style="display: none;" class="text-danger align-self-center">You must vote yes or no</p>
+                    </div>
+                </div>
+            </div>
+            <div id="missionModal" class="modal fade" data-keyboard="false" data-backdrop="static"  role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="missionModalHeader">Execute your mission:</h4>
+                            <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                        </div>
+                        <div class="modal-body">
+                            <div id="passFail" class="d-flex flex-wrap justify-content-center">
+                                <div>
+                                    <input type="radio" class="hideInput" id="pass" name="executeRadio" value="pass">
+                                    <label for="pass" class="btn d-inline"><img id="blackCard"/></label>
+                                </div>
+                                <div>
+                                    <input type="radio" class="hideInput" id="fail" name="executeRadio" value="fail">
+                                    <label for="fail" class="btn d-inline"><img id="redCard"/></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" id="execute" class="btn btn-lg btn-dark mx-auto">Execute</button>
+                        </div>
+                        <p id="executeWarning" style="display: none;" class="text-danger align-self-center">You must select black (pass) or red (fail)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="userButtDiv">
+                <input type="checkbox" class="hideCheck checkcheck" id="" name="" value="">
+                <label class="btn btn-success btn-circle" for="">EYYY CHUCK</label>
+            </div> -->
+        </div>
+        
+        
+        <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+        <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+        <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="https://unpkg.com/cardsJS/dist/cards.min.js" type="text/javascript"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>

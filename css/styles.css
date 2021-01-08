@@ -1,0 +1,73 @@
+.mission {
+    margin-top: 2em;
+}
+
+.row {
+    margin-top: 1em;
+}
+
+.btn-circle, .btn-xl { 
+    width: 100px; 
+    height: 100px; 
+    padding: 39px 1px; 
+    border-radius: 50px; 
+    font-size: 13px; 
+    text-align: center;
+    margin: 1.2em;
+    justify-content: center;
+} 
+
+/* #userbutts {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    padding: auto; */
+}
+
+.userButtDiv {
+    display: inline;
+}
+
+.hideInput {
+    position: absolute;
+    display: none;
+}
+
+input[type=checkbox]:checked ~ label.btn {
+    background-color: #e6e6e6;
+    border-color: #adadad;
+    color: #333;
+}
+
+#only {
+    color: #d9534f;
+}
+
+.fa-thumbs-up {
+    color: #5cb85c;
+}
+
+.fa-thumbs-down {
+    color: #d9534f;
+}
+
+.fa-thumbs-up, .fa-thumbs-down {
+    width: 4em;
+    padding: 3px;
+}
+
+#passFail img {
+    height: 200px;
+}
+
+#pass:checked+label img{
+    border: 3px solid black;
+    border-radius: 10px;
+}
+
+#fail:checked+label img{
+    border: 3px solid red;
+    border-radius: 10px;
+}
+
