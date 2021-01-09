@@ -6,7 +6,7 @@
     margin-top: 1em;
 }
 
-.btn-circle, .btn-xl { 
+.btn-circle { 
     width: 100px; 
     height: 100px; 
     padding: 39px 1px; 
@@ -15,14 +15,19 @@
     text-align: center;
     margin: 1.2em;
     justify-content: center;
-} 
+}
 
-/* #userbutts {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    align-items: center;
-    padding: auto; */
+.checkcheck:checked+.btn-circle {
+    box-shadow: inset 0px 1px 5px 2px rgb(148, 145, 145);
+    border: 1px solid rgb(156, 151, 151);
+    background-color: #ececec;
+    border-color: #adadad;
+    color: rgb(46, 46, 46);
+}
+
+.checkcheck:not(:checked)+.btn-circle {
+    box-shadow: 0px 3px 2px 1px rgb(110, 105, 105);
+    border: 1px solid #8a8989;
 }
 
 .userButtDiv {
@@ -32,12 +37,6 @@
 .hideInput {
     position: absolute;
     display: none;
-}
-
-input[type=checkbox]:checked ~ label.btn {
-    background-color: #e6e6e6;
-    border-color: #adadad;
-    color: #333;
 }
 
 #only {
@@ -57,17 +56,59 @@ input[type=checkbox]:checked ~ label.btn {
     padding: 3px;
 }
 
-#passFail img {
-    height: 200px;
+#yes:not(:checked)+label, #no:not(:checked)+label {
+    box-shadow: 2px 2px 5px 1px rgb(110, 105, 105);
+    /* border: 1px outset rgb(150, 145, 145); */
 }
 
-#pass:checked+label img{
-    border: 3px solid black;
-    border-radius: 10px;
+#yes:not(:checked)+label {
+    border: 1px outset #5cb85c;
 }
 
-#fail:checked+label img{
-    border: 3px solid red;
-    border-radius: 10px;
+#no:not(:checked)+label {
+    border: 1px outset #d9534f;
 }
 
+#yes:checked+label {
+    background-color: #61b661;
+    box-shadow: inset 1px 1px 5px 4px #3f883f;
+}
+
+#no:checked+label {
+    background-color: #d9534f;
+    box-shadow: inset 1px 1px 5px 4px #aa2c28;
+}
+
+#yes:checked+label, #no:checked+label {
+    border: 1px inset rgb(129, 124, 124);
+}
+
+#yes:checked+label i, #no:checked+label i, #yes:hover+label i, #no:hover+label i {
+    color: white;
+}
+
+#pass:checked+label img, #fail:checked+label img{
+    box-shadow: 4px 5px 7px 5px rgb(63, 62, 62);
+    transform: scale(1.1);
+}
+
+.passFail {
+    box-shadow: 1px 2px 4px 2px rgb(63, 62, 62);
+    border-radius: 15px;
+    margin-bottom: 2px;
+    max-height: 200px;
+}
+
+#reload {
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 20%;
+}
+
+.start {
+    width: 200px;
+}
+
+#startGame {
+    max-width: 500px;
+}
