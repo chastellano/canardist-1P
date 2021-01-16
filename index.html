@@ -10,32 +10,65 @@
     </head>
     <body>
         <div class="container">
-            <h1 class="text-center my-4">LE RESISTANCE</h1>
+            <h1 class="text-center my-5">LA R&EacuteSISTANCE</h1>
+            <div class="text-center mt-5">
+                <button class="btn btn-lg btn-dark mt-5" id="join">Join Game</button>
+            </div>
+            <div id="nameModal" class="modal fade" data-keyboard="false" data-backdrop="static" role="dialog">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header p-3">
+                            <h5 class="modal-title" id="voteModalHeader">Enter your name:</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                               <div class="col-10 mx-auto">
+                                    <div class="mx-auto">
+                                        <label class="form-label text-lg sr-only" for="nameInput"><h4>Your Name</h4></label>
+                                        <div class="input-group mx-auto">
+                                            <input type="text" class="form-control" id="nameInput" placeholder="Your name">
+                                        </div>
+                                        <div class="mt-4 text-center">
+                                            <button id="enlistButt" class="btn border btn-dark">Enlist</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+            
             <div class="row">
                 <div class="col">
-                    <div id="startGame" class="mx-auto">
+                    <div id="startGame" class="mt-5 mx-auto" style="display: none;">
                         <label class="form-label text-lg" for="playersInput"><h4>How many players?</h4></label>
                         <div class="input-group mx-auto">
                             <input type="text" class="form-control" id="playersInput" placeholder="Choose between 5-10 people">
                             <div class="input-group-append">
-                                <button class="btn btn-small btn-primary" id='numPlayersButton' type='button' onclick="startGame();">Start!</button>
+                                <button class="btn btn-small btn-primary" id='numPlayersButt' type='button'>Start!</button>
                             </div>
+                        </div>
+                        <div class="mt-2">
+                            <p id="startWarning" style="display: none;" class="text-danger align-self-center">Please enter a number between 5 and 10</p>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div id="gameBody" style="display: none;">
                 <div class="row">
-                    <div class="col">
-                        <div id="identityReveal" style="">
-                            <p id="identityHeader"></p>
-                            <div id="identityDeal">
-                    
-                            </div>
-                        </div>
+                    <div class="col-12">
+                        <p>Your identity card is:</p>
+                    </div>
+                    <div id="playerIdentity" class="col-12">
+
+                    </div>
+                    <div class="col-12 mt-4">
+                        <button id="revealAll" class="btn btn-sm btn-outline-dark">Show All Identities</button>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" style="display: none">
                     <div class="col">
                         <div id="missionReveal">
                             <p>The missions are: </p>
@@ -81,6 +114,23 @@
                     </div>
                 </div>
             </div>
+
+            <div id="identityModal" class="modal fade" role="dialog">
+                <div class="modal-dialog " role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Player identities:</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="identityDeal" class="d-flex col flex-wrap justify-content-around">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div id="proposeModal" class="modal fade" data-backdrop="static" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -106,17 +156,17 @@
                             <h4 class="modal-title" id="voteModalHeader">Do you approve this mission?</h4>
                         </div>
                         <div class="modal-body">
-                            <div id="proposedPlayers" class="d-flex flex-wrap justify-content-center">
+                            <div id="proposedPlayers" class="d-flex flex-wrap justify-content-center mb-5">
                                 
                             </div>
-                            <div id="voteButts" class="d-flex flex-wrap justify-content-around mt-3">
+                            <div id="voteButts" class="d-flex flex-wrap justify-content-around mt-3 mb-0">
                                 <div>
                                     <input type="radio" class="hideInput" id="yes" name="voteMission" value="yes">
-                                    <label for="yes" id="thumbsUp" class="btn btn-outline-success"><i class="far fa-3x fa-thumbs-up"></i></label>
+                                    <label for="yes" id="thumbsUp" class="btn btn-outline-success"><i class="far fa-2x fa-thumbs-up"></i></label>
                                 </div>
                                 <div>
                                     <input type="radio" class="hideInput" id="no" name="voteMission" value="no">
-                                    <label for="no" id="thumbsDown" class="btn btn-outline-danger"><i class="far fa-3x fa-thumbs-down fa-flip-horizontal"></i></label>
+                                    <label for="no" id="thumbsDown" class="btn btn-outline-danger"><i class="far fa-2x fa-thumbs-down fa-flip-horizontal"></i></label>
                                 </div>
                             </div>
                         </div>
@@ -134,7 +184,6 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h4 class="modal-title" id="missionModalHeader">Execute your mission:</h4>
-                                    <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
                                 </div>
                                 <div class="modal-body row">
                                     <div id="passFailButts" class="d-flex mx-auto">
@@ -149,7 +198,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" id="execute" class="btn btn-lg btn-dark mx-auto">Execute</button>
+                                    <button type="submit" id="executeButt" class="btn btn-lg btn-dark mx-auto">Execute</button>
                                 </div>
                                 <p id="executeWarning" style="display: none;" class="text-danger align-self-center">You must select black (pass) or red (fail)</p>
                             </div>
@@ -159,7 +208,52 @@
             </div>
 
 
+            <!-- <div class="row">
+                <div class="col-12">
+                    <p>Your identity card is:</p>
+                </div>
+                <div id="playerIdentity" class="col">
+                    <img id="blackCard" class="identity" src="cardsJS/cards/KD.svg"/>
+                </div>
+            </div>
+            <div class="row pt-4">
+                <div class="col">
+                    <button id="revealIdentities" class="btn btn-sm btn-primary">Show Identities</button>
+                    <div class="mt-2" style="display none">
+                      
+                    </div>
+                </div>
+            </div> -->
 
+            <!-- <div id="identityModal" class="modal fade" role="dialog">
+                <div class="modal-dialog " role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="voteModalHeader">Player identities:</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="identityDeal" class="d-flex col flex-wrap justify-content-around">
+                                <div>
+                                    <p class="text-center">Simba</p>
+                                    <img id="blackCard" class="identityCardModal" src="cardsJS/cards/KD.svg"/>
+                                </div>
+                                <div>
+                                    <p class="text-center">Shinzo</p>
+                                    <img id="blackCard" class="identityCardModal" src="cardsJS/cards/4h.svg"/>
+                                </div>
+                                <div>
+                                    <p class="text-center">Mufasa</p>
+                                    <img id="blackCard" class="identityCardModal" src="cardsJS/cards/ac.svg"/>
+                                </div>
+                                <div>
+                                    <p class="text-center">Pumbaa</p>
+                                    <img id="blackCard" class="identityCardModal" src="cardsJS/cards/js.svg"/>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div> -->
 
             <!-- <div class="userButtDiv">
                 <input type="checkbox" class="hideCheck checkcheck" id="" name="" value="">
@@ -194,6 +288,53 @@
                 </div>
             </div> -->
 
+            <!-- <div id="voteModal" class="modal fade" data-keyboard="false" data-backdrop="static" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="voteModalHeader">Do you approve this mission?</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div id="proposedPlayers" class="d-flex flex-wrap justify-content-center mb-5">
+                                <div class="userButtDiv">
+                                    <label for="test7" class="btn-violet btn-circle" for="">EYYY CHUCK</label>
+                                </div>
+                                <div class="userButtDiv">
+                                    <label for="test8" class="btn-aqua btn-circle" for="">EYYY CHUCK</label>
+                                </div>
+                                <div class="userButtDiv">
+                                    <label for="test9" class="btn-beige btn-circle" for="">EYYY CHUCK</label>
+                                </div>
+                                <div class="userButtDiv">
+                                    <label for="test9" class="btn-green btn-circle" for="">EYYY CHUCK</label>
+                                </div>
+                                <div class="userButtDiv">
+                                    <label for="test9" class="btn-red btn-circle" for="">EYYY CHUCK</label>
+                                </div>
+                                <div class="userButtDiv">
+                                    <label for="test9" class="btn-indigo btn-circle" for="">EYYY CHUCK</label>
+                                </div>
+                            </div>
+                            <div id="voteButts" class="d-flex flex-wrap justify-content-around mt-3 mb-0">
+                                <div>
+                                    <input type="radio" class="hideInput" id="yes" name="voteMission" value="yes">
+                                    <label for="yes" id="thumbsUp" class="btn btn-outline-success"><i class="far fa-2x fa-thumbs-up"></i></label>
+                                </div>
+                                <div>
+                                    <input type="radio" class="hideInput" id="no" name="voteMission" value="no">
+                                    <label for="no" id="thumbsDown" class="btn btn-outline-danger"><i class="far fa-2x fa-thumbs-down fa-flip-horizontal"></i></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer mt-0">
+                            <button id="voteSubmit" class="btn btn-lg btn-dark mx-auto">Submit Vote</button>
+                        </div>
+                            <p id="voteWarning" style="display: none;" class="text-danger align-self-center">You must vote yes or no</p>
+                    </div>
+                </div>
+            </div> -->
+            
+
             <!-- <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -204,35 +345,63 @@
                         <div id="userButts" class="d-flex flex-wrap justify-content-center">
                             <div class="userButtDiv">
                                 <input type="checkbox" class="hideInput checkcheck" id="test" name="" value="">
-                                <label for="test" class="btn btn-success btn-circle" for="">EYYY CHUCK</label>
+                                <label for="test" class="btn btn-red btn-circle" for="">EYYY CHUCK</label>
                             </div>
                             <div class="userButtDiv">
                                 <input type="checkbox" class="hideInput checkcheck" id="test2" name="" value="">
-                                <label for="test2" class="btn btn-danger btn-circle" for="">EYYY CHUCK</label>
+                                <label for="test2" class="btn btn-orange btn-circle" for="">EYYY CHUCK</label>
                             </div>
                             <div class="userButtDiv">
                                 <input type="checkbox" class="hideInput checkcheck" id="test3" name="" value="">
-                                <label for="test3" class="btn btn-warning btn-circle" for="">EYYY CHUCK</label>
+                                <label for="test3" class="btn btn-yellow btn-circle" for="">EYYY CHUCK</label>
                             </div>
                             <div class="userButtDiv">
                                 <input type="checkbox" class="hideInput checkcheck" id="test4" name="" value="">
-                                <label for="test4" class="btn btn-info btn-circle" for="">EYYY CHUCK</label>
+                                <label for="test4" class="btn btn-green btn-circle" for="">EYYY CHUCK</label>
+                            </div>
+                            <div class="userButtDiv">
+                                <input type="checkbox" class="hideInput checkcheck" id="test5" name="" value="">
+                                <label for="test5" class="btn btn-blue btn-circle" for="">EYYY CHUCK</label>
+                            </div>
+                            <div class="userButtDiv">
+                                <input type="checkbox" class="hideInput checkcheck" id="test6" name="" value="">
+                                <label for="test6" class="btn btn-indigo btn-circle" for="">EYYY CHUCK</label>
+                            </div>
+                            <div class="userButtDiv">
+                                <input type="checkbox" class="hideInput checkcheck" id="test7" name="" value="">
+                                <label for="test7" class="btn btn-violet btn-circle" for="">EYYY CHUCK</label>
+                            </div>
+                            <div class="userButtDiv">
+                                <input type="checkbox" class="hideInput checkcheck" id="test8" name="" value="">
+                                <label for="test8" class="btn btn-aqua btn-circle" for="">EYYY CHUCK</label>
+                            </div>
+                            <div class="userButtDiv">
+                                <input type="checkbox" class="hideInput checkcheck" id="test9" name="" value="">
+                                <label for="test9" class="btn btn-beige btn-circle" for="">EYYY CHUCK</label>
+                            </div>
+                            <div class="userButtDiv">
+                                <input type="checkbox" class="hideInput checkcheck" id="test10" name="" value="">
+                                <label for="test10" class="btn btn-brown btn-circle" for="">EYYY CHUCK</label>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
+                    </div> -->
+                    <!-- <div class="modal-footer">
                         <button type="submit" id="missionPropose" class="btn btn-lg btn-dark mx-auto">Propose Mission</button>
                     </div>
                 </div>
-            </div> -->
+            </div>
 
-            <!-- <div>
+            <div>
                 <input type="radio" class="hideInput" id="passtest" name="executeRadio" value="pass">
                 <label for="passtest" class="btn d-inline"><img id="blackCard" class="passFail" src="cardsJS/cards/KD.svg"/></label>
             </div>
             <div>
                 <input type="radio" class="hideInput" id="failtest" name="executeRadio" value="fail">
                 <label for="failtest" class="btn d-inline"><img id="redCard" class="passFail" src="cardsJS/cards/KS.svg"/></label>
+            </div> -->
+
+            <!-- <div>
+                <label class="btn-blue btn-circle">Chunk</label>
             </div> -->
 
         </div>
