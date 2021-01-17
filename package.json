@@ -4,20 +4,23 @@
   "description": "Resistance card game",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon run index.js",
     "start": "npm run lite",
     "lite": "lite-server"
   },
   "author": "Charles",
   "license": "ISC",
   "devDependencies": {
-    "lite-server": "^2.5.4"
+    "lite-server": "^2.5.4",
+    "nodemon": "^2.0.7"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",
     "bootstrap": "^4.5.2",
     "cardsJS": "^1.1.1",
+    "express": "^4.17.1",
     "jquery": "^3.5.1",
-    "popper.js": "^1.16.1"
+    "popper.js": "^1.16.1",
+    "socket.io": "^3.1.0"
   }
 }
